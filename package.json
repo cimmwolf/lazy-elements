@@ -1,0 +1,8 @@
+{
+  "name": "@vistro/lazy-elements",
+  "version": "1.0.0",
+  "description": "Script for lazy loading elements",
+  "repository": "https://github.com/cimmwolf/lazy-elements",
+  "author": "Denis Beliaev <denis@vistro.ru>",
+  "license": "MIT"
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Delayed Elements Test</title>
+
+  <style>
+    .delay {height: 200vh}
+
+    .info {
+      text-align: center;
+      position: fixed;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="delay">
+  <div class="info" id="info"></div>
+</div>
+
+<lazy-img src="https://dummyimage.com/1024x512/000/fff"></lazy-img>
+
+<lazy-iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                frameborder="0"
+                height="315"
+                src="https://www.youtube.com/embed/6f0y1Iaorug"
+                width="560"></lazy-iframe>
+
+<script src="lazy-img.js"></script>
+<script src="lazy-iframe.js"></script>
+<script>
+  let display = document.getElementById('info')
+
+  onScroll()
+  window.addEventListener('scroll', onScroll)
+
+  function onScroll () {
+    let elements = document.querySelectorAll('img, iframe, delayed-img, delayed-iframe')
+    let html = ''
+    for (let i = 0, len = elements.length; i < len; i++) {
+      let el = elements[i]
+
+      let offsetTop = offset(el).top
+      let trigger = document.documentElement.clientHeight
+      trigger = offsetTop - window.scrollY - trigger * 2
+      if (trigger > 0) {
+        trigger = '+' + trigger
+      }
+
+      html += el.tagName + ' [to trigger: ' + trigger + 'px]<br>'
+    }
+    display.innerHTML = html + '<br><br> Please scroll down'
+  }
+
+  function offset (el) {
+    let rect = el.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+  }
+</script>
+</body>
+</html>
