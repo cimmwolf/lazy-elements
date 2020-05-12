@@ -6,11 +6,11 @@
   <title>Delayed Elements Test</title>
 
   <style>
-    .delay {height: 200vh}
+    .delay {min-height: 200vh}
 
     .info {
-      text-align: center;
       position: fixed;
+      text-align: center;
       width: 100%;
     }
   </style>
@@ -23,11 +23,13 @@
 <lazy-img src="https://dummyimage.com/1024x512/000/fff"></lazy-img>
 
 <lazy-iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                frameborder="0"
-                height="315"
-                src="https://www.youtube.com/embed/6f0y1Iaorug"
-                width="560"></lazy-iframe>
+             allowfullscreen
+             frameborder="0"
+             height="315"
+             src="https://www.youtube.com/embed/6f0y1Iaorug"
+             width="560"></lazy-iframe>
+
+<div class="delay"></div>
 
 <script src="lazy-img.js"></script>
 <script src="lazy-iframe.js"></script>
@@ -38,7 +40,7 @@
   window.addEventListener('scroll', onScroll)
 
   function onScroll () {
-    let elements = document.querySelectorAll('img, iframe, delayed-img, delayed-iframe')
+    let elements = document.querySelectorAll('img, iframe, lazy-img, lazy-iframe')
     let html = ''
     for (let i = 0, len = elements.length; i < len; i++) {
       let el = elements[i]
